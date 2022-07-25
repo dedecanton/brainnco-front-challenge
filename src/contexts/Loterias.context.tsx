@@ -4,7 +4,7 @@ import { ConcursosType, LoteriaContextType, LoteriaType } from "../types/Loteria
 
 const BASE_URL = "https://brainn-api-loterias.herokuapp.com/api/v1";
 
-export const LotteryContext = createContext<LoteriaContextType>({
+export const LoteriaContext = createContext<LoteriaContextType>({
   loterias: [],
   concursos: [],
   loading: false,
@@ -14,7 +14,7 @@ type LotteryProviderProps = {
   children: React.ReactNode;
 };
 
-export const LotteryProvider = ({ children }: LotteryProviderProps) => {
+export const LoteriaContextProvider = ({ children }: LotteryProviderProps) => {
   const [loadingLoterias, setLoadingLoterias] = useState<boolean>(false);
   const [loadingConcursos, setLoadingConcursos] = useState<boolean>(false);
   const [loterias, setLoterias] = useState<LoteriaType[]>([]);
@@ -44,6 +44,6 @@ export const LotteryProvider = ({ children }: LotteryProviderProps) => {
   };
 
   return (
-    <LotteryContext.Provider value={value}>{children}</LotteryContext.Provider>
+    <LoteriaContext.Provider value={value}>{children}</LoteriaContext.Provider>
   );
 };
