@@ -20,7 +20,6 @@ export const LoteriaContextProvider = ({ children }: LotteryProviderProps) => {
   const [loterias, setLoterias] = useState<LoteriaType[]>([]);
   const [concursos, setConcursos] = useState<ConcursosType[]>([]);
   const loading = loadingLoterias || loadingConcursos;
-  console.log(loadingLoterias, loadingConcursos, loading);
 
   useEffect(() => {
     setLoadingLoterias(true);
