@@ -1,6 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { LoteriaContext } from "../../contexts/Loterias.context";
+import React from "react";
 import { ConcursoType } from "../../types/Loterias.types";
 import {
   Container,
