@@ -1,13 +1,17 @@
 import { createContext, useEffect, useState } from "react";
-import { ConcursosType, LoteriaContextType, LoteriaType } from "../types/Loterias.types";
-
+import {
+  ConcursosType,
+  LoteriaContextType,
+  LoteriaType,
+} from "../types/Loterias.types";
+import useFetch from "../utils/hooks/useFetch";
 
 const BASE_URL = "https://brainn-api-loterias.herokuapp.com/api/v1";
 
 export const LoteriaContext = createContext<LoteriaContextType>({
   loterias: [],
   concursos: [],
-  loading: false,
+  loading: true,
 });
 
 type LotteryProviderProps = {
@@ -15,26 +19,26 @@ type LotteryProviderProps = {
 };
 
 export const LoteriaContextProvider = ({ children }: LotteryProviderProps) => {
-  const [loadingLoterias, setLoadingLoterias] = useState<boolean>(false);
-  const [loadingConcursos, setLoadingConcursos] = useState<boolean>(false);
-  const [loterias, setLoterias] = useState<LoteriaType[]>([]);
-  const [concursos, setConcursos] = useState<ConcursosType[]>([]);
-  const loading = loadingLoterias || loadingConcursos;
+  const [loading, setLoading] = useState<boolean>(true);
+
+  const loteriasFetch = useFetch<LoteriaType[]>(BASE_URL + "/loterias");
+  const concursosFetch = useFetch<ConcursosType[]>(
+    BASE_URL + "/loterias-concursos"
+  );
+
+  if (loteriasFetch.error) {
+    throw new Error(loteriasFetch.error.message);
+  }
+  if (concursosFetch.error) {
+    throw new Error(concursosFetch.error.message);
+  }
+
+  const loterias = loteriasFetch.data!;
+  const concursos = concursosFetch.data!;
 
   useEffect(() => {
-    setLoadingLoterias(true);
-    setLoadingConcursos(true);
-
-    fetch(BASE_URL + "/loterias")
-      .then((res) => res.json())
-      .then((data) => setLoterias(data))
-      .then(() => setLoadingLoterias(false));
-
-    fetch(BASE_URL + "/loterias-concursos")
-      .then((res) => res.json())
-      .then((data) => setConcursos(data))
-      .then(() => setLoadingConcursos(false));
-  }, []);
+    if (loterias && concursos) setLoading(false);
+  }, [loterias, concursos]);
 
   const value = {
     loterias,
