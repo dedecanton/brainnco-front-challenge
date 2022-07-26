@@ -4,15 +4,18 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { LoteriaContextProvider } from "./contexts/Loterias.context";
+import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <LoteriaContextProvider>
-      <App />
-    </LoteriaContextProvider>
+    <BrowserRouter>
+      <LoteriaContextProvider>
+        <App />
+      </LoteriaContextProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
