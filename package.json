@@ -48,6 +48,7 @@
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,ts,tsx}",
       "!src/components/**/index.ts",
+      "!src/types/*",
       "!<rootDir>/node_modules/",
       "!<rootDir>/path/to/dir/"
     ]
