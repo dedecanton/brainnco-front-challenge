@@ -16,8 +16,8 @@ import useWindowDimensions from "../../utils/hooks/useWindowDimensions";
 import { useNavigate } from "react-router-dom";
 
 type LoteriaDetailsProps = {
-  loteria: LoteriaType;
-  concurso: ConcursoType;
+  loteria: LoteriaType | undefined;
+  concurso: ConcursoType | undefined;
 };
 
 const LoteriaDetails = ({ loteria, concurso }: LoteriaDetailsProps) => {

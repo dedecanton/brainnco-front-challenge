@@ -82,12 +82,12 @@ describe("test in desktop width cases", () => {
 });
 
 test("Should show error if not recive loteria", () => {
-  render(<LoteriaDetails concurso={mockConcurso} />);
+  render(<LoteriaDetails concurso={mockConcurso} loteria={undefined} />);
   const text = screen.getByText("Loteria não encontrada");
   expect(text).toBeVisible();
 });
 test("Should show error if not recive loteria", () => {
-  render(<LoteriaDetails loteria={mockLoteria} />);
+  render(<LoteriaDetails concurso={undefined} loteria={mockLoteria} />);
   const text = screen.getByText("Concurso não encontrado");
   expect(text).toBeVisible();
 });
