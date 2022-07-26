@@ -12,10 +12,10 @@ type LoteriaResultsProps = {
 };
 
 const LoteriaResults = ({ concurso }: LoteriaResultsProps) => {
-  if (!concurso) return <h1>not concurso in page</h1>;
+  if (!concurso) return <h1>Concurso não encontrado</h1>;
 
   return (
-    <Container>
+    <Container data-testid="LoteriaResults">
       <ResultsContainer>
         {concurso.numeros.map((numero) => (
           <NumeroResult key={numero}>{numero}</NumeroResult>
