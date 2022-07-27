@@ -17,7 +17,7 @@ const BASE_URL = "https://brainn-api-loterias.herokuapp.com/api/v1";
 const Loteria = () => {
   const { id } = useParams();
   const { concursos, loterias } = useContext(LoteriaContext);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const concursoId = concursos.find(
     (concurso) => concurso.loteriaId === parseInt(id!)
   )?.concursoId;
